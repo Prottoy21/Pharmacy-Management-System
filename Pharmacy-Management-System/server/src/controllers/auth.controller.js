@@ -1,5 +1,12 @@
-import { registerSchema, loginSchema } from "../validators/auth.validator.js";
-import { registerUser, loginUser } from "../services/auth.service.js";
+import {
+  registerSchema,
+  loginSchema,
+} from "../validators/auth.validator.js";
+
+import {
+  registerUser,
+  loginUser,
+} from "../services/auth.service.js";
 
 export const register = async (req, res, next) => {
   try {
@@ -23,7 +30,7 @@ export const login = async (req, res, next) => {
 
     const result = await loginUser(data);
 
-    res.json({
+    res.status(200).json({
       success: true,
       message: "Login successful",
       data: result,
@@ -34,7 +41,7 @@ export const login = async (req, res, next) => {
 };
 
 export const me = async (req, res) => {
-  res.json({
+  res.status(200).json({
     success: true,
     data: req.user,
   });

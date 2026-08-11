@@ -1,34 +1,23 @@
 import { Router } from "express";
 
-import * as controller from "../controllers/category.controller.js";
 import {
-  protect,
-  authorize,
-} from "../middleware/auth.middleware.js";
+  createCategory,
+  getCategories,
+  getCategoryById,
+  updateCategory,
+  deleteCategory,
+} from "../controllers/category.controller.js";
 
 const router = Router();
 
-router.get("/", protect, controller.getAll);
+router.get("/", getCategories);
 
-router.post(
-  "/",
-  protect,
-  authorize("admin"),
-  controller.create
-);
+router.get("/:id", getCategoryById);
 
-router.put(
-  "/:id",
-  protect,
-  authorize("admin"),
-  controller.update
-);
+router.post("/", createCategory);
 
-router.delete(
-  "/:id",
-  protect,
-  authorize("admin"),
-  controller.remove
-);
+router.put("/:id", updateCategory);
+
+router.delete("/:id", deleteCategory);
 
 export default router;

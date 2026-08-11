@@ -2,43 +2,51 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   medicines: [],
+  pagination: {
+    page: 1,
+    limit: 10,
+    total: 0,
+    pages: 0,
+  },
+  loading: false,
+  error: null,
 };
 
 const medicineSlice = createSlice({
   name: "medicine",
+
   initialState,
+
   reducers: {
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+
     setMedicines: (state, action) => {
       state.medicines = action.payload;
     },
 
-    addMedicine: (state, action) => {
-      state.medicines.push(action.payload);
+    setPagination: (state, action) => {
+      state.pagination = action.payload;
     },
 
-    updateMedicine: (state, action) => {
-      const index = state.medicines.findIndex(
-        (medicine) => medicine._id === action.payload._id
-      );
-
-      if (index !== -1) {
-        state.medicines[index] = action.payload;
-      }
+    setError: (state, action) => {
+      state.error = action.payload;
     },
 
-    removeMedicine: (state, action) => {
-      state.medicines = state.medicines.filter(
-        (medicine) => medicine._id !== action.payload
-      );
+    clearMedicines: (state) => {
+      state.medicines = [];
+      state.pagination = initialState.pagination;
     },
   },
 });
 
 export const {
+  setLoading,
   setMedicines,
-  addMedicine,
-  updateMedicine,
-  removeMedicine,
+  setPagination,
+  setError,
+  clearMedicines,
 } = medicineSlice.actions;
 
 export default medicineSlice.reducer;

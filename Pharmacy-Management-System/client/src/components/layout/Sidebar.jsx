@@ -1,6 +1,7 @@
 import {
   LayoutDashboard,
   Pill,
+  Tags,
   ShoppingCart,
   Package,
   Users,
@@ -27,6 +28,11 @@ const Sidebar = () => {
       name: "Medicines",
       icon: Pill,
       path: "/medicines",
+    },
+    {
+      name: "Categories",
+      icon: Tags,
+      path: "/categories",
     },
     {
       name: "Purchase",
@@ -63,9 +69,7 @@ const Sidebar = () => {
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-white shadow-lg">
       <div className="h-16 flex items-center justify-center border-b">
-        <h1 className="text-2xl font-bold text-blue-600">
-          Pharmacy ERP
-        </h1>
+        <h1 className="text-2xl font-bold text-blue-600">Pharmacy ERP</h1>
       </div>
 
       <nav className="p-4 space-y-2">
@@ -78,9 +82,7 @@ const Sidebar = () => {
               to={menu.path}
               className={({ isActive }) =>
                 `flex items-center gap-3 p-3 rounded-lg transition ${
-                  isActive
-                    ? "bg-blue-600 text-white"
-                    : "hover:bg-slate-100"
+                  isActive ? "bg-blue-600 text-white" : "hover:bg-slate-100"
                 }`
               }
             >
@@ -97,7 +99,6 @@ const Sidebar = () => {
         className="absolute bottom-6 left-4 right-4 flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg"
       >
         <LogOut size={18} />
-
         Logout
       </button>
     </aside>

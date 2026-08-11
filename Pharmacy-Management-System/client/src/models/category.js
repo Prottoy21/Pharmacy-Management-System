@@ -4,7 +4,7 @@ const categorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Category name is required"],
+      required: true,
       unique: true,
       trim: true,
     },
@@ -12,7 +12,6 @@ const categorySchema = new mongoose.Schema(
     description: {
       type: String,
       default: "",
-      trim: true,
     },
 
     isActive: {
@@ -25,9 +24,4 @@ const categorySchema = new mongoose.Schema(
   }
 );
 
-const Category = mongoose.model(
-  "Category",
-  categorySchema
-);
-
-export default Category;
+export default mongoose.model("Category", categorySchema);

@@ -1,21 +1,18 @@
-import api from "../../services/api";
+import api from "../../api/axios";
 
-export const getMedicinesRequest = () => {
-  return api.get("/medicines");
-};
+export const getMedicinesRequest = (params) =>
+  api.get("/medicines", {
+    params,
+  });
 
-export const getMedicineRequest = (id) => {
-  return api.get(`/medicines/${id}`);
-};
+export const getMedicineRequest = (id) =>
+  api.get(`/medicines/${id}`);
 
-export const createMedicineRequest = (data) => {
-  return api.post("/medicines", data);
-};
+export const createMedicineRequest = (data) =>
+  api.post("/medicines", data);
 
-export const updateMedicineRequest = (id, data) => {
-  return api.put(`/medicines/${id}`, data);
-};
+export const updateMedicineRequest = (id, data) =>
+  api.put(`/medicines/${id}`, data);
 
-export const deleteMedicineRequest = (id) => {
-  return api.delete(`/medicines/${id}`);
-};
+export const deleteMedicineRequest = (id) =>
+  api.delete(`/medicines/${id}`);

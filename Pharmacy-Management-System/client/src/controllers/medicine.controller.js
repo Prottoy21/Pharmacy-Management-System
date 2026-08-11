@@ -18,11 +18,12 @@ export const create = async (req, res, next) => {
 
 export const getAll = async (req, res, next) => {
   try {
-    const medicines = await medicineService.getMedicines();
+    const medicines = await medicineService.getMedicines(req.query);
 
     res.json({
       success: true,
-      data: medicines,
+      data: medicines.data,
+      pagination: medicines.pagination,
     });
   } catch (err) {
     next(err);
@@ -31,7 +32,9 @@ export const getAll = async (req, res, next) => {
 
 export const getOne = async (req, res, next) => {
   try {
-    const medicine = await medicineService.getMedicineById(req.params.id);
+    const medicine = await medicineService.getMedicineById(
+      req.params.id
+    );
 
     res.json({
       success: true,
@@ -44,9 +47,11 @@ export const getOne = async (req, res, next) => {
 
 export const update = async (req, res, next) => {
   try {
+    const data = medicineSchema.parse(req.body);
+
     const medicine = await medicineService.updateMedicine(
       req.params.id,
-      req.body
+      data
     );
 
     res.json({
